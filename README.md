@@ -1,9 +1,11 @@
 # Pioneer600
 Python project for creating a headless Raspberry Pi server and easily outputting information and executing simple commands
 
-**Python-Imaging is required for the OLED Display**
+## Installing required libraries
 
-`sudo pip install python-imaging`
+`sudo apt-get install python-dev python-smbus python-imaging python-serial`
+
+You must enable i2c, SPI, and Serial with `sudo raspi-config`
 
 You can run the module in boot by typing `sudo crontab -e` to the terminal and adding `@reboot /path/to/Pioneer600.py`
 
@@ -46,4 +48,4 @@ You can run the module in boot by typing `sudo crontab -e` to the terminal and a
 
 
 
-## Feel free to make requests and ask for support at warc1998@gmail.com
+## Feel free to make requests and ask for support
