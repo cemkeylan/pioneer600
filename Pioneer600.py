@@ -2,7 +2,7 @@
 # -*- coding:utf-8 -*-
 # Cem KEYLAN
 # 2018
-# Version 1.0
+# Version 1.1
 
 
 import RPi.GPIO as GPIO
@@ -67,6 +67,7 @@ def menu ():
 
 	# Main Information delivering up status
 	if main_menu == 1 :
+		strtime = time.strftime("%H : %M : %S")
 
 		if submenus == 4:
 			submenus = 1
@@ -78,7 +79,7 @@ def menu ():
 				upstatus = "Down"
 			else:
 				upstatus = "UP"
-			oled("Status = " + upstatus,os.popen("hostname -I").read(),"by Cem Keylan")
+			oled("Status = " + upstatus,os.popen("/sbin/ifconfig eth0 | grep 'inet ' | cut -d: -f2 | awk '{ print $2}'").read(), strtime)
 		elif submenus == 3 :
 			if "active" in os.popen("sudo service ssh status").read():
 				upssh = "UP"
@@ -216,7 +217,7 @@ GPIO.setup(KEY,GPIO.IN,GPIO.PUD_UP)
 bus = smbus.SMBus(1)
 
 print("Starting...")
-print("Version 1.0")
+print("Version 1.1")
 
 try:
 	while True:
